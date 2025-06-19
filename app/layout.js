@@ -25,7 +25,7 @@ export default function RootLayout({children}) {
         baseTheme: dark,
       }}
     >
-     <html lang="en" className={caveat.className}>
+     <html lang="en" className={caveat.className} suppressHydrationWarning>
         <body className={`antialiased font-bold`}>
             <ThemeProvider
             attribute="class"
