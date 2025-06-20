@@ -12,6 +12,7 @@ import Logo from '@/public/logo.png'
 import { Earth } from 'lucide-react'
 const Navbar = () => {
   return (
+    <div>
     <Link href={'/'} className='flex items-center justify-between px-10 py-5 shadow dark:shadow-gray-900'>
         <div className='flex items-center gap-0.5'>
       <p className='text-2xl'>LifeMap</p>
@@ -31,6 +32,7 @@ const Navbar = () => {
         </div>
 
     </Link>
+    </div>
   )
 }
 
