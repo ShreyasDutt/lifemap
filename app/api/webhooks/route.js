@@ -5,55 +5,65 @@ import { verifyWebhook } from '@clerk/nextjs/webhooks'
 export async function POST(req) {
   try {
     const evt = await verifyWebhook(req)
-
-    // Do something with payload
-    // For this guide, log payload to console
-    const { id } = evt.data
     const eventType = evt.type
 
-    if (evt.type === 'user.created' || evt.type === 'user.updated' || evt.type === 'user.deleted') {
+    if (
+      eventType === 'user.created' ||
+      eventType === 'user.updated' ||
+      eventType === 'user.deleted'
+    ) {
       await DbConnect();
-      const email = evt?.data?.email_addresses[0]?.email_address;
 
-      if (!email) {
-        return console.log("Email not found in evt payload")
+      if (eventType === 'user.deleted') {
+        const clerkId = evt.data.id;
+        try {
+          await User.findOneAndDelete({ clerkId });
+          console.log("User deleted with Clerk ID: " + clerkId);
+        } catch (error) {
+          console.error("Error deleting user:", error);
+        }
+        return new Response('User deleted handled', { status: 200 });
       }
+
+      const email = evt?.data?.email_addresses?.[0]?.email_address;
+      if (!email) {
+        console.log("Email not found in payload");
+        return new Response("Missing email in user.created/updated", { status: 400 });
+      }
+
       const userPayload = {
         clerkId: evt.data.id,
         username: evt.data.username,
-        email: email,
+        email,
         profilepic: evt.data.image_url,
         firstname: evt.data.first_name,
         lastname: evt.data.last_name,
       };
 
       try {
-        if (evt.type === 'user.created') {
-          const FoundUser = await User.findOne({ email });
-          if (FoundUser) return console.log("User already exists");
+        if (eventType === 'user.created') {
+          const existing = await User.findOne({ email });
+          if (existing) {
+            console.log("User already exists");
+            return new Response('User already exists', { status: 200 });
+          }
 
           await User.create(userPayload);
-          console.log("User created with Email: " + email);
+          console.log("User created with email: " + email);
         }
 
-        if (evt.type === 'user.updated') {
+        if (eventType === 'user.updated') {
           await User.findOneAndUpdate({ email }, userPayload);
-          console.log("User updated with Email: " + email);
-        }
-
-          if (evt.type === 'user.deleted') {
-          await User.findOneAndDelete({ email });
-          console.log("User Deleted with Email: " + email);
+          console.log("User updated with email: " + email);
         }
       } catch (error) {
         console.error("Error during user sync:", error);
       }
     }
 
-    
-    return new Response('Webhook received', { status: 200 })
+    return new Response('Webhook received', { status: 200 });
   } catch (err) {
-    console.error('Error verifying webhook:', err)
-    return new Response('Error verifying webhook', { status: 400 })
+    console.error('Error verifying webhook:', err);
+    return new Response('Error verifying webhook', { status: 400 });
   }
 }
