@@ -13,7 +13,11 @@ export async function POST(req) {
 
     if (evt.type === 'user.created' || evt.type === 'user.updated' || evt.type === 'user.deleted') {
       await DbConnect();
-      const email = evt.data.email_addresses[0].email_address;
+      const email = evt?.data?.email_addresses[0]?.email_address;
+
+      if (!email) {
+        return console.log("Email not found in evt payload")
+      }
       const userPayload = {
         clerkId: evt.data.id,
         username: evt.data.username,
