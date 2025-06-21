@@ -23,7 +23,6 @@ const MemorySchema = new Schema(
       type: Date,
       required: true,
     },
-    tags: [String],
   },
   { timestamps: true }
 );
