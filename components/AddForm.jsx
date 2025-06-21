@@ -15,6 +15,7 @@ import { SaveMemory } from '@/app/actions/userActions'
 import { currentSelectedDate } from "@/lib/utils"
 import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
+import { motion } from "framer-motion"
 
 const AddForm = () => {
   const formRef = useRef(null);
@@ -92,13 +93,16 @@ const AddForm = () => {
           }}
         />
         </div>
-        {previewUrl && (
-          <img
-            src={previewUrl}
-            alt="Preview"
-            className="mt-2 h-40 w-full object-cover rounded-xl border"
-          />
-        )}
+          {previewUrl && (
+            <motion.img
+              src={previewUrl}
+              alt="Preview"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, ease: 'easeIn' }}
+              className="mt-2 h-40 w-full object-cover rounded-xl border"
+            />
+          )}
         <div className="grid gap-3">
           <Label htmlFor="title">Title</Label>
           <Input id="title" name="title" placeholder='That rainy evening in Delhi ☔' />
