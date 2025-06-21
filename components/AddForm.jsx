@@ -17,7 +17,8 @@ import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
 
 const AddForm = () => {
-  const formRef = useRef(null)
+  const formRef = useRef(null);
+  const CloseRef = useRef(null);
   const [loading, setLoading] = useState(false)
 
   
@@ -62,6 +63,7 @@ const AddForm = () => {
     } finally {
       setLoading(false);
     }
+      CloseRef.current.click();
   }
 
   return (
@@ -92,8 +94,8 @@ const AddForm = () => {
         </div>
       </div>
       <DialogFooter className="mt-5">
-        <DialogClose asChild>
-          <Button variant="outline" disabled={loading}>Cancel</Button>
+        <DialogClose ref={CloseRef}>
+          <Button variant="outline"  disabled={loading}>Cancel</Button>
         </DialogClose>
         <Button type="submit" disabled={loading}>
           {loading ? <Loader2 className="animate-spin"/> : "Save changes"}
