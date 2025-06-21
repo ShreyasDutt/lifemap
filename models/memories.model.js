@@ -15,10 +15,6 @@ const MemorySchema = new Schema(
       type: String,
       required: true,
     },
-    description: {
-      type: String,
-      trim: true,
-    },
     memoryDate: {
       type: Date,
       required: true,

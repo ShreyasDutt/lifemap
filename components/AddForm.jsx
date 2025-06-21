@@ -20,6 +20,7 @@ const AddForm = () => {
   const formRef = useRef(null);
   const CloseRef = useRef(null);
   const [loading, setLoading] = useState(false)
+  const [previewUrl, setPreviewUrl] = useState(null)
 
   
   const handleSubmit = async (e) => {
@@ -78,15 +79,29 @@ const AddForm = () => {
       </DialogHeader>
       <div className="grid gap-4">
         <div className="grid gap-3">
-          <Input type="file" id="photo" name="photo" accept="image/*" />
+         <Input
+          type="file"
+          id="photo"
+          name="photo"
+          accept="image/*"
+          onChange={(e) => {
+            const file = e.target.files[0];
+            if (file) {
+              setPreviewUrl(URL.createObjectURL(file));
+            }
+          }}
+        />
         </div>
+        {previewUrl && (
+          <img
+            src={previewUrl}
+            alt="Preview"
+            className="mt-2 h-40 w-full object-cover rounded-xl border"
+          />
+        )}
         <div className="grid gap-3">
           <Label htmlFor="title">Title</Label>
           <Input id="title" name="title" placeholder='That rainy evening in Delhi ☔' />
-        </div>
-        <div className="grid gap-3">
-          <Label htmlFor="description">Description</Label>
-          <Input id="description" name="description" placeholder='Write a little about this memory...' />
         </div>
         <div className="grid gap-3">
           <Label htmlFor="memoryDate">Memory Date</Label>
