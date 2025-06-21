@@ -1,8 +1,11 @@
 import React from 'react'
 import { FloatingDialog } from '@/components/FloatingDialog'
-const page = () => {
+import PoloroidFrame from '@/components/PoloroidFrame'
+import { GetAllMemories } from './actions/userActions'
+const page = async() => {
+  const Memories = await GetAllMemories();
   return (
-    <div className='flex items-center justify-center mt-20'>
+    <div className='flex flex-col items-center justify-center mt-20'>
       <h1>
         <p className='line-through'>Create Models and DbConnection <br/>
         Create Webhooks for CRUD operations on User <br/>
@@ -16,6 +19,17 @@ const page = () => {
 
 
       </h1>
+      <div className="flex flex-col gap-10 w-full max-w-2xl px-4 my-10">
+        {Memories.map((memory) => (
+          <PoloroidFrame
+            key={memory._id}
+            image={memory.photo}
+            title={memory.title}
+            date={memory.memoryDate}
+          />
+        ))}
+      </div>
+
       <FloatingDialog/>
     </div>
   )
