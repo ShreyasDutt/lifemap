@@ -7,8 +7,6 @@ import {
 import { ModeToggle } from './ModeToggle'
 import { Button } from './ui/button'
 import Link from 'next/link'
-import Image from 'next/image'
-import Logo from '@/public/logo.png'
 import { Earth } from 'lucide-react'
 const Navbar = () => {
   return (

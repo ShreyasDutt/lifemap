@@ -42,7 +42,6 @@ export function DatePicker() {
   
 if (value && !open) {
     getDate(value);
-    console.log(currentSelectedDate);
 }
 
   return (

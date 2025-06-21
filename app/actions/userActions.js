@@ -2,10 +2,11 @@
 
 import { DbConnect } from "@/lib/DbConnect";
 
-export const SaveMemory = async(formData)=>{
+export const SaveMemory = async({ title, description, date, image })=>{
     await DbConnect();
 try {
-    console.log(formData.get('photo'))
+    console.log(title, description, date, image);
+    
 } catch (error) {
     console.log(error);
 }

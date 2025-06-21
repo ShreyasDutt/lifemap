@@ -6,6 +6,7 @@ import './globals.css'
 import { dark } from '@clerk/themes'
 import Navbar from '@/components/Navbar'
 import { ThemeProvider } from '@/components/ThemeProvider'
+import { Toaster } from "@/components/ui/sonner"
 
 
 const caveat = Indie_Flower({
@@ -35,6 +36,7 @@ export default function RootLayout({children}) {
           >
           <Navbar/>
           {children}
+          <Toaster />
           </ThemeProvider>
         </body>
       </html>
