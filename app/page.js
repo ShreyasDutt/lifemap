@@ -7,8 +7,8 @@ const page = () => {
         <p className='line-through'>Create Models and DbConnection <br/>
         Create Webhooks for CRUD operations on User <br/>
          Create a form to add a memory <br/>
+          Connect Cloudinary & Save Memories <br/>
         </p>
-        Connect Cloudinary & Save Memories <br/>
         Create Poloroid Card Component <br/>
         Find a Scribble Library for Ui <br/>
 
