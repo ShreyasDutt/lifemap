@@ -39,16 +39,35 @@ try {
 }
 }
 
-export const GetAllMemories = async()=>{
-    await DbConnect();
-    const {userId} = await auth();
-    try {
-        const FoundMemories = await User.findOne({clerkId:userId}).populate('memories');
-        return FoundMemories;
-    } catch (error) {
-        console.log(error);
-    }
-}
+export const GetAllMemories = async () => {
+  await DbConnect();
+  const { userId } = await auth();
+  try {
+    const FoundUser = await User.findOne({ clerkId: userId }).populate("memories");
+    if (!FoundUser) throw new Error("User not found");
+
+    const grouped = {};
+
+    FoundUser.memories.forEach((memoryDoc) => {
+      const memory = memoryDoc.toObject();
+      const date = new Date(memory.memoryDate).toISOString().split("T")[0]; // 'YYYY-MM-DD'
+      if (!grouped[date]) {
+        grouped[date] = [];
+      }
+      grouped[date].push(memory);
+    });
+
+    const groupedArray = Object.keys(grouped).map((date) => ({
+      date,
+      memories: grouped[date],
+    }));
+
+    return groupedArray;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
 export const DeleteMemory = async(id)=>{
     await DbConnect();
