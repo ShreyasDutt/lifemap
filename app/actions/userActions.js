@@ -42,12 +42,8 @@ try {
 export const GetAllMemories = async()=>{
     await DbConnect();
     const {userId} = await auth();
-    const FoundUser = await User.findOne({clerkId:userId});
-    if(!FoundUser){
-        throw new Error("User not found");
-    }
     try {
-        const FoundMemories = await Memories.find({createdBy:FoundUser._id});
+        const FoundMemories = await User.findOne({clerkId:userId}).populate('memories');
         return FoundMemories;
     } catch (error) {
         console.log(error);

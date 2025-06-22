@@ -2,18 +2,11 @@ import React from 'react'
 import { FloatingDialog } from '@/components/FloatingDialog'
 import PoloroidFrame from '@/components/PoloroidFrame'
 import { GetAllMemories } from './actions/userActions'
-import {auth} from '@clerk/nextjs/server';
-import User from '@/models/user.model';
-import { DbConnect } from '@/lib/DbConnect';
 
 const page = async() => {
-  const {userId} = await auth();
-  await DbConnect();
-  const FoundUser = await User.findOne({clerkId:userId});
-  if(!FoundUser){
-    return [];
-  }
-  const Memories = await GetAllMemories();
+  const data = await GetAllMemories();
+  const Memories = data?.memories || [];
+
   return (
     <div className='flex flex-col items-center justify-center mt-20'>
       <h1>
@@ -26,7 +19,7 @@ const page = async() => {
         <p>Create a Calendar to Switch b/w dates and then load memories created on that Date</p>
         Find a Scribble Library for Ui <br/>
 
-  
+    
 
 
       </h1>

@@ -62,16 +62,18 @@ const handleSubmit = async (e) => {
       date: currentSelectedDate,
       image: photoUrl,
       imageId: public_ID,
+    }).then(()=>{
+    toast.success("Memory saved!");
     });
 
-    toast.success("Memory saved!");
     setPreviewUrl(null);
     formRef.current.reset();
     CloseRef.current.click();
+    return;
 
   } catch (error) {
     console.error("Error saving memory:", error);
-    toast.error("Failed to save memory");
+    // toast.error("Failed to save memory");
   } finally {
     setLoading(false);
   }
