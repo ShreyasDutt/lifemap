@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+  OrganizationSwitcher,
   SignedIn,
   SignedOut,
   UserButton,
@@ -8,6 +9,8 @@ import { ModeToggle } from './ModeToggle'
 import { Button } from './ui/button'
 import Link from 'next/link'
 import { Earth } from 'lucide-react'
+
+
 const Navbar = () => {
   return (
     <div>
@@ -24,9 +27,13 @@ const Navbar = () => {
                 <Link href={'/sign-in'}>Get Started</Link>
             </Button>
             </SignedOut>
+            <div className='flex items-center gap-3 text-black'>
             <SignedIn>
+              <OrganizationSwitcher hidePersonal={true}/>
               <UserButton />
             </SignedIn>
+            </div>
+            
         </div>
 
     </Link>

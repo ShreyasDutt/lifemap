@@ -11,7 +11,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import { currentSelectedDate } from "@/lib/utils"
 import { getDate } from "@/lib/utils"
 
 function formatDate(date) {
