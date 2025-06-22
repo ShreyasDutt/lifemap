@@ -12,6 +12,7 @@ const page = async () => {
     <div className="flex flex-col items-center justify-center mt-20">
       <div className='flex items-center flex-col'>
       <p>Add Delete and Edit buttons to the new Deck</p>
+      <p>Fix Ui Issue on Mobile</p>
       <p>Work on Orgs</p>
       </div>
       <div className="flex flex-col justify-center gap-14 px-6 py-10 max-w-6xl w-full">
