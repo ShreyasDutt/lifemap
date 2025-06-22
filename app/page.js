@@ -19,16 +19,18 @@ const page = async() => {
 
 
       </h1>
-      <div className="flex flex-col gap-10 w-full max-w-2xl px-4 my-10">
+      <div className="flex flex-wrap justify-center gap-8 px-6 py-10 max-w-6xl">
         {Memories.map((memory) => (
           <PoloroidFrame
-            key={memory._id}
+            key={memory._id.toString()}
+            memoryId={memory._id.toString()}
             image={memory.photo}
             title={memory.title}
             date={memory.memoryDate}
           />
         ))}
       </div>
+
 
       <FloatingDialog/>
     </div>

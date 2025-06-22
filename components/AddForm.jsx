@@ -24,49 +24,58 @@ const AddForm = () => {
   const [previewUrl, setPreviewUrl] = useState(null)
 
   
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setLoading(true)
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
 
-    const formData = new FormData(formRef.current)
-    const file = formData.get("photo")
-    let photoUrl = ""
+  const formData = new FormData(formRef.current);
+  const file = formData.get("photo");
 
-
-    try {
-      if (!file.name) {
-        return toast("Photo is required");
-      }else if(!formData.get('title')){
-        return toast("Title is required");
-      }
-      // Upload to Cloudinary
-      if (file && file.name) {
-        const uploadRes = await fetch("/api/image-upload", {
-          method: "POST",
-          body: formData,
-        })
-        const data = await uploadRes.json()
-        photoUrl = data.url
-      }
-
-
-
-
-      // Submit to DB via Server Action
-      await SaveMemory({
-        title: formData.get("title"),
-        description: formData.get("description"),
-        date: currentSelectedDate,
-        image: photoUrl,
-      })
-
-    } catch (error) {
-      console.error("Error saving memory:", error)
-    } finally {
-      setLoading(false);
-    }
-      CloseRef.current.click();
+  if (!file.name) {
+    toast.error("Photo is required");
+    setLoading(false);
+    return;
   }
+  if (!formData.get("title")) {
+    toast.error("Title is required");
+    setLoading(false);
+    return;
+  }
+
+  let photoUrl = "";
+  let public_ID = "";
+
+  try {
+    const uploadRes = await fetch("/api/image-upload", {
+      method: "POST",
+      body: formData,
+    });
+    const data = await uploadRes.json();
+
+    if (!data.success) throw new Error("Upload failed");
+
+    photoUrl = data.url;
+    public_ID = data.publicId;
+
+    const saveRes = await SaveMemory({
+      title: formData.get("title"),
+      date: currentSelectedDate,
+      image: photoUrl,
+      imageId: public_ID,
+    });
+
+    toast.success("Memory saved!");
+    setPreviewUrl(null);
+    formRef.current.reset();
+    CloseRef.current.click();
+
+  } catch (error) {
+    console.error("Error saving memory:", error);
+    toast.error("Failed to save memory");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <form ref={formRef} onSubmit={handleSubmit}>

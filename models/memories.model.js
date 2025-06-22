@@ -11,6 +11,7 @@ const MemorySchema = new Schema(
       type: String,
       required: true,
     },
+
     title: {
       type: String,
       required: true,
@@ -19,6 +20,10 @@ const MemorySchema = new Schema(
       type: Date,
       required: true,
     },
+    imageId:{
+      type:String,
+      required:true,
+    }
   },
   { timestamps: true }
 );

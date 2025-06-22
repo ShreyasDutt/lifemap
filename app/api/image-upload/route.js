@@ -31,12 +31,14 @@ export async function POST(request) {
         (error, result) => {
           if (error) return reject(error)
           resolve(result)
+
         }
       )
       uploadStream.end(buffer)
     })
-
-    return NextResponse.json({ success: true, url: result.secure_url })
+        console.log(result.public_id,"public id");
+        console.log(result.secure_url,"secure url")
+    return NextResponse.json({ success: true, url: result.secure_url, publicId: result.public_id })
   } catch (error) {
     console.error("Upload error:", error)
     return NextResponse.json({ error: "Upload failed" }, { status: 500 })
