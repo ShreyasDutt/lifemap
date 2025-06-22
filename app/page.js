@@ -4,9 +4,11 @@ import PoloroidFrame from '@/components/PoloroidFrame'
 import { GetAllMemories } from './actions/userActions'
 import {auth} from '@clerk/nextjs/server';
 import User from '@/models/user.model';
+import { DbConnect } from '@/lib/DbConnect';
 
 const page = async() => {
   const {userId} = await auth();
+  await DbConnect();
   const FoundUser = await User.findOne({clerkId:userId});
   if(!FoundUser){
     return [];
