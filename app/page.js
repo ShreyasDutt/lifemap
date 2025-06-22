@@ -5,7 +5,7 @@ import { GetAllMemories } from './actions/userActions'
 
 const page = async () => {
   const grouped = await GetAllMemories();
-  const sorted = grouped.reverse();
+  const sorted = grouped?.reverse() || [];
   return (
     <div className="flex flex-col items-center justify-center mt-20">
       <div className="flex flex-col justify-center gap-14 px-6 py-10 max-w-6xl w-full">
