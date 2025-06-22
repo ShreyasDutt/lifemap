@@ -42,7 +42,7 @@ export async function POST(req) {
 
       try {
         if (eventType === 'user.created') {
-          const existing = await User.findOne({ email });
+          const existing = await User.findOne({ clerkId:evt.data.id});
           if (existing) {
             console.log("User already exists");
             return new Response('User already exists', { status: 200 });

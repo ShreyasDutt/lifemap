@@ -17,11 +17,11 @@ cloudinary.config({
 export const SaveMemory = async({ title, date, image,imageId })=>{
     await DbConnect();
     const {userId} = await auth();
+try {
     const FoundUser = await User.findOne({clerkId:userId});
     if(!FoundUser){
-        throw new Error("User not found");
+         return new Error("User not found");
     }
-try {
    const CreatedMemory = await Memories.create({
          createdBy: FoundUser._id,
             photo: image,
