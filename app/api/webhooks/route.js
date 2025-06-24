@@ -33,11 +33,9 @@ export async function POST(req) {
 
       const userPayload = {
         clerkId: evt.data.id,
-        username: evt.data.username,
         email,
         profilepic: evt.data.image_url,
         firstname: evt.data.first_name,
-        lastname: evt.data.last_name,
       };
 
       try {
