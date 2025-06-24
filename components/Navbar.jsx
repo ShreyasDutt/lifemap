@@ -29,7 +29,7 @@ const Navbar = () => {
             </SignedOut>
             <div className='flex items-center gap-3 text-black'>
             <SignedIn>
-              <OrganizationSwitcher hidePersonal={true}/>
+              {/* <OrganizationSwitcher hidePersonal={true}/> */}
               <UserButton />
             </SignedIn>
             </div>

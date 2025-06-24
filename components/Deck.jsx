@@ -8,6 +8,7 @@ import { motion } from "framer-motion"
 import { Button } from './ui/button'
 import { Edit3, Trash } from 'lucide-react'
 import { DeleteMemory } from '@/app/actions/userActions'
+import { toast } from 'sonner'
 
 
 export default function Deck({ cards }) {
@@ -46,21 +47,19 @@ export default function Deck({ cards }) {
   })
 
   return (
-    <div className="overflow-hidden relative h-[66vh] w-full flex justify-center items-center"   >
+    <div className="overflow-hidden relative h-[66vh] w-full flex justify-center items-center">
       {props.map(({ x, y, rot, scale}, i) => (
         <animated.div key={i} style={{ x, y }} className="absolute touch-none">
           <animated.div
             {...bind(i)}
-            className="bg-white dark:bg-neutral-900 shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-neutral-200 dark:border-neutral-700 rounded-lg cursor-grab active:cursor-grabbing w-fit max-w-[340px] transition-all duration-500 ease-out"
+            className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg cursor-grab active:cursor-grabbing w-fit max-w-[340px] transition-all duration-500 ease-out"
             style={{
               transform: interpolate([rot, scale], utils.trans),
               padding: '12px 12px 32px 12px',
             }}
           >
              <div
-              className="relative flex flex-col justify-center items-center group cursor-pointer"
-
-            >
+              className="relative flex flex-col justify-center items-center group cursor-pointer">
           <motion.div
           onMouseEnter={() => {
                 setmenuToggler(true)
@@ -80,16 +79,14 @@ export default function Deck({ cards }) {
               duration: 0.3,
               ease: "easeOut"
             }}
-            className={`absolute w-full justify-end top-3 right-3 z-20 flex gap-2`}
-          >
+            className={`absolute w-full justify-end top-3 right-3 z-20 flex gap-2`}>
             {/* Edit Button */}
             <Button
               variant="ghost"
               onClick={(e) => {
                 e.stopPropagation()
               }}
-              className="backdrop-blur-md bg-white/20 hover:bg-white/30 border border-white/30 text-white hover:text-blue-400 p-2 h-auto w-auto rounded-full transition-all duration-200"
-            >
+              className="backdrop-blur-md bg-white/20 hover:bg-white/30 border border-white/30 text-white hover:text-blue-400 p-2 h-auto w-auto rounded-full transition-all duration-200">
               <Edit3 size={14} />
             </Button>
 
@@ -98,21 +95,18 @@ export default function Deck({ cards }) {
               variant="ghost"
               onClick={async(e) => {
                 e.stopPropagation()
-                console.log(cards[i].id);
-                
-                // const res = await DeleteMemory(memoryId);
-                // if(res.success){
-                //   return toast.success(res.message);
-                // }
-                // toast.error("Something went wrong");
+                const res = await DeleteMemory(cards[i].id);
+                if(res.success){
+                  return toast.success(res.message);
+                }
+                toast.error("Something went wrong");
               }}
-              className="backdrop-blur-md bg-white/20 hover:bg-white/30 border border-white/30 text-white hover:text-red-500 p-2 h-auto w-auto rounded-full transition-all duration-200"
-            >
+              className="backdrop-blur-md bg-white/20 hover:bg-white/30 border border-white/30 text-white hover:text-red-500 p-2 h-auto w-auto rounded-full transition-all duration-200">
               <Trash size={14} />
             </Button>
           </motion.div>
           </div>
-            <div className="relative w-[300px] h-[300px] overflow-hidden rounded-lg border-2 border-neutral-100 dark:border-neutral-800">
+            <div className="relative w-[280px] h-[280px] md:h-[300px] md:w-[300px] overflow-hidden rounded-lg border-2 border-neutral-100 dark:border-neutral-800">
               <div className="relative w-full h-full rounded-lg overflow-hidden">
                 <div
                   className="w-full h-full object-cover rounded-lg"
