@@ -4,9 +4,15 @@ import { useSprings, animated, to as interpolate } from '@react-spring/web'
 import { useDrag } from '@use-gesture/react'
 import * as utils from '../lib/utils'
 import '../app/styles/style.css'
+import { motion } from "framer-motion"
+import { Button } from './ui/button'
+import { Edit3, Trash } from 'lucide-react'
+
 
 export default function Deck({ cards }) {
   const [gone] = useState(() => new Set())
+  const [menuToggler, setmenuToggler] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
   const [props, api] = useSprings(cards.length, (i) => ({
     ...utils.to(i),
     from: utils.from(i)
@@ -37,7 +43,9 @@ export default function Deck({ cards }) {
   })
 
   return (
-    <div className="overflow-hidden relative h-[66vh] w-full flex justify-center items-center">
+    <div className="overflow-hidden relative h-[66vh] w-full flex justify-center items-center"
+             
+    >
       {props.map(({ x, y, rot, scale }, i) => (
         <animated.div key={i} style={{ x, y }} className="absolute touch-none">
           <animated.div
@@ -48,9 +56,61 @@ export default function Deck({ cards }) {
               padding: '12px 12px 32px 12px',
             }}
           >
+             <div
+              className="relative flex flex-col justify-center items-center group cursor-pointer"
+              
+            >
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ 
+              opacity: menuToggler ? 1 : 0,
+              y: menuToggler ? 0 : -10
+            }}
+            transition={{ 
+              duration: 0.3,
+              ease: "easeOut"
+            }}
+            className="absolute top-3 right-3 z-20 flex gap-2"
+          >
+            {/* Edit Button */}
+            <Button
+              variant="ghost"
+              onClick={(e) => {
+                e.stopPropagation()
+              }}
+              className="backdrop-blur-md bg-white/20 hover:bg-white/30 border border-white/30 text-white hover:text-blue-400 p-2 h-auto w-auto rounded-full transition-all duration-200"
+            >
+              <Edit3 size={14} />
+            </Button>
+
+            {/* Delete Button */}
+            <Button
+              variant="ghost"
+              onClick={async(e) => {
+                e.stopPropagation()
+                const res = await DeleteMemory(memoryId);
+                if(res.success){
+                  return toast.success(res.message);
+                }
+                toast.error("Something went wrong");
+              }}
+              className="backdrop-blur-md bg-white/20 hover:bg-white/30 border border-white/30 text-white hover:text-red-500 p-2 h-auto w-auto rounded-full transition-all duration-200"
+            >
+              <Trash size={14} />
+            </Button>
+          </motion.div>
+          </div>
             <div className="relative w-[300px] h-[300px] overflow-hidden rounded-lg border-2 border-neutral-100 dark:border-neutral-800">
               <div className="relative w-full h-full rounded-lg overflow-hidden">
                 <div
+                 onMouseEnter={() => {
+                setmenuToggler(true)
+                setIsHovered(true)
+              }}
+              onMouseLeave={() => {
+                setmenuToggler(false)
+                setIsHovered(false)
+              }}
                   className="w-full h-full object-cover rounded-lg"
                   style={{
                     backgroundImage: `url(${cards[i].photo})`,
