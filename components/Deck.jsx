@@ -7,6 +7,7 @@ import '../app/styles/style.css'
 import { motion } from "framer-motion"
 import { Button } from './ui/button'
 import { Edit3, Trash } from 'lucide-react'
+import { DeleteMemory } from '@/app/actions/userActions'
 
 
 export default function Deck({ cards }) {
@@ -24,6 +25,7 @@ export default function Deck({ cards }) {
     api.start((i) => {
       if (index !== i) return
       const isGone = gone.has(index)
+      setmenuToggler(true);
       const x = isGone ? (200 + window.innerWidth) * xDir : active ? mx : 0
       const rot = mx / 100 + (isGone ? xDir * 10 * vx : 0)
       const scale = active ? 1.1 : 1
@@ -38,15 +40,14 @@ export default function Deck({ cards }) {
     if (!active && gone.size === cards.length)
       setTimeout(() => {
         gone.clear()
+        setmenuToggler(false);
         api.start((i) => utils.to(i))
       }, 600)
   })
 
   return (
-    <div className="overflow-hidden relative h-[66vh] w-full flex justify-center items-center"
-             
-    >
-      {props.map(({ x, y, rot, scale }, i) => (
+    <div className="overflow-hidden relative h-[66vh] w-full flex justify-center items-center"   >
+      {props.map(({ x, y, rot, scale}, i) => (
         <animated.div key={i} style={{ x, y }} className="absolute touch-none">
           <animated.div
             {...bind(i)}
@@ -97,11 +98,13 @@ export default function Deck({ cards }) {
               variant="ghost"
               onClick={async(e) => {
                 e.stopPropagation()
-                const res = await DeleteMemory(memoryId);
-                if(res.success){
-                  return toast.success(res.message);
-                }
-                toast.error("Something went wrong");
+                console.log(cards[i].id);
+                
+                // const res = await DeleteMemory(memoryId);
+                // if(res.success){
+                //   return toast.success(res.message);
+                // }
+                // toast.error("Something went wrong");
               }}
               className="backdrop-blur-md bg-white/20 hover:bg-white/30 border border-white/30 text-white hover:text-red-500 p-2 h-auto w-auto rounded-full transition-all duration-200"
             >
