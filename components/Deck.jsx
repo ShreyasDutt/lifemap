@@ -103,14 +103,6 @@ export default function Deck({ cards }) {
             <div className="relative w-[300px] h-[300px] overflow-hidden rounded-lg border-2 border-neutral-100 dark:border-neutral-800">
               <div className="relative w-full h-full rounded-lg overflow-hidden">
                 <div
-                 onMouseEnter={() => {
-                setmenuToggler(true)
-                setIsHovered(true)
-              }}
-              onMouseLeave={() => {
-                setmenuToggler(false)
-                setIsHovered(false)
-              }}
                   className="w-full h-full object-cover rounded-lg"
                   style={{
                     backgroundImage: `url(${cards[i].photo})`,
