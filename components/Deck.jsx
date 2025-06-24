@@ -58,9 +58,18 @@ export default function Deck({ cards }) {
           >
              <div
               className="relative flex flex-col justify-center items-center group cursor-pointer"
-              
+
             >
           <motion.div
+          onMouseEnter={() => {
+                setmenuToggler(true)
+                setIsHovered(true)
+              }}
+              onMouseLeave={() => {
+                setmenuToggler(false)
+                setIsHovered(false)
+              }}
+
             initial={{ opacity: 0, y: -10 }}
             animate={{ 
               opacity: menuToggler ? 1 : 0,
@@ -70,7 +79,7 @@ export default function Deck({ cards }) {
               duration: 0.3,
               ease: "easeOut"
             }}
-            className="absolute top-3 right-3 z-20 flex gap-2"
+            className={`absolute w-full justify-end top-3 right-3 z-20 flex gap-2`}
           >
             {/* Edit Button */}
             <Button
@@ -103,14 +112,6 @@ export default function Deck({ cards }) {
             <div className="relative w-[300px] h-[300px] overflow-hidden rounded-lg border-2 border-neutral-100 dark:border-neutral-800">
               <div className="relative w-full h-full rounded-lg overflow-hidden">
                 <div
-                 onMouseEnter={() => {
-                setmenuToggler(true)
-                setIsHovered(true)
-              }}
-              onMouseLeave={() => {
-                setmenuToggler(false)
-                setIsHovered(false)
-              }}
                   className="w-full h-full object-cover rounded-lg"
                   style={{
                     backgroundImage: `url(${cards[i].photo})`,
