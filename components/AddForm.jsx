@@ -123,9 +123,9 @@ const handleSubmit = async (e) => {
           <DatePicker />
         </div>
       </div>
-      <DialogFooter className="mt-5">
+      <DialogFooter className="mt-5 flex flex-col-reverse gap-3 md:flex-col-reverse">
         <DialogClose ref={CloseRef}>
-          <Button variant="outline"  disabled={loading}>Cancel</Button>
+          <Button variant="outline" className={'w-full'} disabled={loading}>Cancel</Button>
         </DialogClose>
         <Button type="submit" disabled={loading}>
           {loading ? <Loader2 className="animate-spin"/> : "Save changes"}
