@@ -58,6 +58,7 @@ export async function POST(req) {
         console.error("Error during user sync:", error);
       }
     }
+    
 
     return new Response('Webhook received', { status: 200 });
   } catch (err) {

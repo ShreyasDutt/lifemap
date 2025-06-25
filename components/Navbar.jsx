@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  OrganizationSwitcher,
   SignedIn,
   SignedOut,
   UserButton,
@@ -29,7 +28,6 @@ const Navbar = () => {
             </SignedOut>
             <div className='flex items-center gap-3 text-black'>
             <SignedIn>
-              {/* <OrganizationSwitcher hidePersonal={true}/> */}
               <UserButton />
             </SignedIn>
             </div>

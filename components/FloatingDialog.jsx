@@ -19,7 +19,7 @@ return (
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         variant="outline"
-        className="fixed rounded-full w-20 h-20 bottom-10 right-10 z-50 transition-all duration-300"
+        className="fixed rounded-full w-20 h-20 bottom-10 right-10 z-50 transition-all duration-300 bg-white/70 dark:bg-black/60"
       >
         <div className="relative w-6 h-6">
           <Plus

@@ -11,12 +11,14 @@ const page = async () => {
   
   return (
     <div className="flex flex-col items-center justify-center mt-20">
+      <div className='absolute right-5 top-25'>
+        <OrganizationSwitcher hidePersonal/>
+      </div>
       <div className='flex items-center flex-col'>
       <p className='line-through text-neutral-500'>Add Delete and Edit buttons to the new Deck</p>
       <p className='line-through text-neutral-500'>Fix Ui Issue on Mobile</p>
       <p className='line-through text-neutral-500'>fix button when only a single Card is there</p>
       <p>Work on Orgs</p>
-      <OrganizationSwitcher hidePersonal/>
       </div>
       <div className="flex flex-col justify-center gap-14 px-6 py-10 max-w-6xl w-full">
         {(!sorted || sorted.length === 0) ? (
