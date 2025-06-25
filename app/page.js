@@ -14,7 +14,7 @@ const page = async () => {
       <div className='flex items-center flex-col'>
       <p className='line-through text-neutral-500'>Add Delete and Edit buttons to the new Deck</p>
       <p className='line-through text-neutral-500'>Fix Ui Issue on Mobile</p>
-      <p>fix button when only a single Card is there</p>
+      <p className='line-through text-neutral-500'>fix button when only a single Card is there</p>
       <p>Work on Orgs</p>
       <OrganizationSwitcher hidePersonal/>
       </div>
@@ -28,41 +28,16 @@ const page = async () => {
               {addDays(new Date(date), 1).toLocaleDateString()}
               </h2>
               
-              {memories.length > 1 ? (
-                <div className="relative h-[500px] w-full">
-                  <Deck 
-                    cards={memories.map(memory => ({
-                      photo: memory.photo,
-                      title: memory.title,
-                      date: memory.memoryDate,
-                      id: memory._id.toString()
-                    }))}
-                  />
-                </div>
-              ) : (
-                <div className="flex justify-center">
-                  <div className="bg-white dark:bg-neutral-900 shadow-xl border border-neutral-300 dark:border-neutral-700 rounded-sm p-2 pb-6 w-fit max-w-[340px]">
-                    <div className="relative w-[300px] h-[300px] overflow-hidden rounded-sm border border-neutral-200 dark:border-neutral-800">
-                      <div
-                        className="w-full h-full"
-                        style={{
-                          backgroundImage: `url(${memories[0].photo})`,
-                          backgroundSize: 'cover',
-                          backgroundPosition: 'center',
-                        }}
-                      />
-                    </div>
-                    <div className="mt-3 text-center px-1">
-                      <p className="text-base text-neutral-700 dark:text-neutral-200">
-                        {memories[0].title}
-                      </p>
-                      <p className="text-xs text-neutral-500 dark:text-neutral-400 italic">
-                        {new Date(memories[0].memoryDate).toLocaleDateString()}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
+              <div className="relative h-[500px] w-full">
+                <Deck 
+                  cards={memories.map(memory => ({
+                    photo: memory.photo,
+                    title: memory.title,
+                    date: memory.memoryDate,
+                    id: memory._id.toString()
+                  }))}
+                />
+              </div>
             </div>
           ))
         )}

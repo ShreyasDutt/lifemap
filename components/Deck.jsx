@@ -13,8 +13,7 @@ import { toast } from 'sonner'
 
 export default function Deck({ cards }) {
   const [gone] = useState(() => new Set())
-  const [menuToggler, setmenuToggler] = useState(false)
-  const [isHovered, setIsHovered] = useState(false)
+  const [hoveredCard, setHoveredCard] = useState(null)
   const [props, api] = useSprings(cards.length, (i) => ({
     ...utils.to(i),
     from: utils.from(i)
@@ -26,7 +25,6 @@ export default function Deck({ cards }) {
     api.start((i) => {
       if (index !== i) return
       const isGone = gone.has(index)
-      setmenuToggler(true);
       const x = isGone ? (200 + window.innerWidth) * xDir : active ? mx : 0
       const rot = mx / 100 + (isGone ? xDir * 10 * vx : 0)
       const scale = active ? 1.1 : 1
@@ -41,7 +39,6 @@ export default function Deck({ cards }) {
     if (!active && gone.size === cards.length)
       setTimeout(() => {
         gone.clear()
-        setmenuToggler(false);
         api.start((i) => utils.to(i))
       }, 600)
   })
@@ -58,22 +55,19 @@ export default function Deck({ cards }) {
               padding: '12px 12px 32px 12px',
             }}
           >
-             <div
-              className="relative flex flex-col justify-center items-center group cursor-pointer">
+             <div className="relative flex flex-col justify-center items-center group cursor-pointer">
           <motion.div
           onMouseEnter={() => {
-                setmenuToggler(true)
-                setIsHovered(true)
+                setHoveredCard(i)
               }}
               onMouseLeave={() => {
-                setmenuToggler(false)
-                setIsHovered(false)
+                setHoveredCard(null)
               }}
 
             initial={{ opacity: 0, y: -10 }}
             animate={{ 
-              opacity: menuToggler ? 1 : 0,
-              y: menuToggler ? 0 : -10
+              opacity: hoveredCard === i ? 1 : 0,
+              y: hoveredCard === i ? 0 : -10
             }}
             transition={{ 
               duration: 0.3,
