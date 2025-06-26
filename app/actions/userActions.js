@@ -6,7 +6,6 @@ import User from "@/models/user.model";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { v2 as cloudinary } from "cloudinary";
-import Group from "@/models/group.model";
 
 cloudinary.config({
   cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
@@ -86,26 +85,3 @@ export const DeleteMemory = async(id)=>{
     }
 }
 
-export const GetUserGroups = async() =>{
-  await DbConnect();
-  const {userId} = await auth();
-  const FoundUser = await User.findOne({clerkId:userId})
-  try {
-    const Groups = await Group.find({groupMembers:FoundUser._id});
-    return Groups;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-export const SearchUser = async (slug) =>{
-  await DbConnect();
-  try{
-  const founduser = await User.find({
-  email: { $regex: slug, $options: "i" }
-}).lean();
-    return founduser;
-  }catch(err){
-    console.log(err);
-  }
-}

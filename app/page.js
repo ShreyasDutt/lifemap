@@ -3,7 +3,6 @@ import { FloatingDialog } from '@/components/FloatingDialog'
 import Deck from '@/components/Deck'
 import { GetAllMemories } from './actions/userActions'
 import { addDays } from 'date-fns'
-import { GroupSwitcher } from '@/components/GroupSwitcher'
 
 const page = async () => {
   const grouped = await GetAllMemories();
@@ -12,11 +11,6 @@ const page = async () => {
   return (
     <div className="flex flex-col items-center justify-center mt-20">
       <div className='absolute right-5 top-25'>
-      </div>
-      <div className='flex items-center flex-col'>
-      <p>Group Creation Form</p>
-      <p>Server Action to Create a Group</p>
-      <p>Group Page</p>
       </div>
       <div className="flex flex-col justify-center gap-14 px-6 py-10 max-w-6xl w-full">
         {(!sorted || sorted.length === 0) ? (

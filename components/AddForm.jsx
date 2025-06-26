@@ -80,7 +80,7 @@ const handleSubmit = async (e) => {
 };
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit}>
+    <form ref={formRef} onSubmit={handleSubmit} >
       <DialogHeader className="mb-4 text-left space-y-1">
         <DialogTitle className="text-2xl font-hand font-bold text-neutral-800 dark:text-neutral-100">
           Add a New Memory

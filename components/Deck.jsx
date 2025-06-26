@@ -76,17 +76,15 @@ export default function Deck({ cards }) {
             className={`absolute w-full justify-end top-3 right-3 z-20 flex gap-2`}>
             {/* Edit Button */}
             <Button
-              variant="ghost"
               onClick={(e) => {
                 e.stopPropagation()
               }}
-              className="backdrop-blur-md bg-white/20 hover:bg-white/30 border border-white/30 text-white hover:text-blue-400 p-2 h-auto w-auto rounded-full transition-all duration-200">
+              className="backdrop-blur-md bg-black hover:bg-black border border-white/30 text-white hover:text-blue-400 p-2 h-auto w-auto rounded-full transition-all duration-200">
               <Edit3 size={14} />
             </Button>
 
             {/* Delete Button */}
             <Button
-              variant="ghost"
               onClick={async(e) => {
                 e.stopPropagation()
                 const res = await DeleteMemory(cards[i].id);
@@ -95,7 +93,7 @@ export default function Deck({ cards }) {
                 }
                 toast.error("Something went wrong");
               }}
-              className="backdrop-blur-md bg-white/20 hover:bg-white/30 border border-white/30 text-white hover:text-red-500 p-2 h-auto w-auto rounded-full transition-all duration-200">
+              className="backdrop-blur-md bg-black border hover:bg-black border-white/30 text-white hover:text-red-500 p-2 h-auto w-auto rounded-full transition-all duration-200">
               <Trash size={14} />
             </Button>
           </motion.div>
