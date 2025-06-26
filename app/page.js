@@ -12,7 +12,6 @@ const page = async () => {
   return (
     <div className="flex flex-col items-center justify-center mt-20">
       <div className='absolute right-5 top-25'>
-        <OrganizationSwitcher hidePersonal/>
       </div>
       <div className='flex items-center flex-col'>
       <p className='line-through text-neutral-500'>Add Delete and Edit buttons to the new Deck</p>
