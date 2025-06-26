@@ -58,6 +58,10 @@ export async function POST(req) {
         console.error("Error during user sync:", error);
       }
     }
+
+    if(eventType === 'organization.created'|| 'organization.updated' || 'organization.deleted'){
+      console.log(evt.data);
+    }
     
 
     return new Response('Webhook received', { status: 200 });
