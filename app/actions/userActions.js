@@ -97,3 +97,15 @@ export const GetUserGroups = async() =>{
     console.log(error);
   }
 }
+
+export const SearchUser = async (slug) =>{
+  await DbConnect();
+  try{
+  const founduser = await User.find({
+  email: { $regex: slug, $options: "i" }
+}).lean();
+    return founduser;
+  }catch(err){
+    console.log(err);
+  }
+}

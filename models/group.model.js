@@ -18,7 +18,6 @@ const GroupSchema = new Schema({
     Memories:[{
         type: mongoose.Types.ObjectId,
         ref:"Memories",
-        required: true
     }]
 },{timestamps:true})
 

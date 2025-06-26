@@ -5,8 +5,8 @@ import {
   DialogContent,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import AddForm from "./AddForm"
 import { Users } from "lucide-react"
+import GroupForm from "./GroupForm"
 
 export function FloatingGroupDialog() {
 
@@ -24,7 +24,7 @@ return (
 
   
   <DialogContent className="sm:max-w-[425px]">
-    <AddForm/>
+    <GroupForm/>
   </DialogContent>
 </Dialog>
 
