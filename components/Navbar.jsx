@@ -8,9 +8,13 @@ import { ModeToggle } from './ModeToggle'
 import { Button } from './ui/button'
 import Link from 'next/link'
 import { Earth } from 'lucide-react'
+import { GroupSwitcher } from './GroupSwitcher'
+import { GetUserGroups } from '@/app/actions/userActions'
 
 
-const Navbar = () => {
+const Navbar = async() => {
+  const Groups = await GetUserGroups();
+
   return (
     <div>
     <Link href={'/'} className='flex items-center justify-between px-10 py-5 shadow dark:shadow-gray-900'>
@@ -19,7 +23,7 @@ const Navbar = () => {
       <Earth />
         </div>
         
-        <div className='flex items-center gap-5'>
+        <div className='flex items-center gap-3'>
             <ModeToggle/>
             <SignedOut>
             <Button asChild>
@@ -28,6 +32,7 @@ const Navbar = () => {
             </SignedOut>
             <div className='flex items-center gap-3 text-black'>
             <SignedIn>
+            <GroupSwitcher groups={Groups}/>
               <UserButton />
             </SignedIn>
             </div>

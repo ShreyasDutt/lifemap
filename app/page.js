@@ -3,7 +3,7 @@ import { FloatingDialog } from '@/components/FloatingDialog'
 import Deck from '@/components/Deck'
 import { GetAllMemories } from './actions/userActions'
 import { addDays } from 'date-fns'
-import { OrganizationSwitcher } from '@clerk/nextjs'
+import { GroupSwitcher } from '@/components/GroupSwitcher'
 
 const page = async () => {
   const grouped = await GetAllMemories();
@@ -14,10 +14,9 @@ const page = async () => {
       <div className='absolute right-5 top-25'>
       </div>
       <div className='flex items-center flex-col'>
-      <p className='line-through text-neutral-500'>Add Delete and Edit buttons to the new Deck</p>
-      <p className='line-through text-neutral-500'>Fix Ui Issue on Mobile</p>
-      <p className='line-through text-neutral-500'>fix button when only a single Card is there</p>
-      <p>Work on Orgs</p>
+      <p>Group Creation Form</p>
+      <p>Server Action to Create a Group</p>
+      <p>Group Page</p>
       </div>
       <div className="flex flex-col justify-center gap-14 px-6 py-10 max-w-6xl w-full">
         {(!sorted || sorted.length === 0) ? (
