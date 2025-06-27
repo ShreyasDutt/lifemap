@@ -16,11 +16,7 @@ LifeMap is a personal memory journal that lets you save and view your life momen
 
 ## 🧪 Tech Stack
 
-* **Frontend**: Next.js 15 + Tailwind CSS
-* **Backend**: MongoDB + Mongoose
-* **Image Hosting**: Cloudinary
-* **Auth**: Clerk
-* **Deploy**: Vercel
+Next.js 15 + Tailwind CSS + Mongoose + MongoDB + Cloudinary + Clerk + Vercel
 
 ---
 
