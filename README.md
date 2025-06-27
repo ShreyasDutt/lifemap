@@ -40,7 +40,7 @@ LifeMap is a personal memory journal that lets you save and view your life momen
 ## 📃 Getting Started
 
 1. Clone the repo
-2. Add `.env.local` with MongoDB, Cloudinary, and Clerk keys
+2. Add `.env` with MongoDB, Cloudinary, and Clerk keys
 3. Run `npm install`
 4. Start the dev server with `npm run dev`
 
