@@ -1,14 +1,14 @@
 import {
   ClerkProvider,
 } from '@clerk/nextjs'
-import { Funnel_Sans } from 'next/font/google'
+import { Comic_Neue } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { Toaster } from "@/components/ui/sonner"
 
 
-const caveat = Funnel_Sans({
+const caveat = Comic_Neue({
   subsets: ["latin"],
   weight: "400",
 });

@@ -2,7 +2,6 @@
   import { FloatingDialog } from '@/components/FloatingDialog'
   import Deck from '@/components/Deck'
   import { GetAllMemories } from './actions/userActions'
-  import { addDays } from 'date-fns'
 
   const page = async () => {
     const grouped = await GetAllMemories();
@@ -10,7 +9,6 @@
     
     return (
       <div className="flex flex-col items-center justify-center mt-20">
-        <p>Create Share functionality</p>
         <div className='absolute right-5 top-25'>
         </div>
         <div className="flex flex-col justify-center gap-14 px-6 py-10 max-w-6xl w-full">

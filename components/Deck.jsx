@@ -91,15 +91,6 @@ export default function Deck({ cards }) {
                 }}
                 className={`absolute w-full justify-end top-3 right-3 z-20 flex gap-2`}
               >
-                {/* Share Button */}
-                <Button
-                  onClick={(e) => {
-                    e.stopPropagation()
-                  }}
-                  className="backdrop-blur-md bg-black hover:bg-black border border-white/30 text-white hover:text-blue-400 p-2 h-auto w-auto rounded-full transition-all duration-200"
-                >
-                  <Share size={14} />
-                </Button>
 
                 {/* Delete Button */}
                 <Button
