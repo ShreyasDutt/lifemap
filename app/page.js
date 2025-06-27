@@ -34,7 +34,7 @@ const page = async () => {
             sorted.map(({ date, memories }) => (
               <div key={date} className="w-full">
                 <h2 className="text-xl font-bold text-center text-neutral-700 dark:text-neutral-200">
-                  {new Date(date).toLocaleDateString(undefined, {
+                  {new Date(date).toLocaleDateString("en-CA", {
                     year: "numeric",
                     month: "short",
                     day: "numeric"

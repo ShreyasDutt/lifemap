@@ -15,7 +15,7 @@ const Navbar = async () => {
       <nav className="max-w-7xl mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <Earth className="w-6 h-6 text-white" />
+          <Earth className="w-6 h-6 text-black dark:text-white" />
           <span className="text-2xl font-semibold text-neutral-800 dark:text-neutral-100">
             LifeMap
           </span>
