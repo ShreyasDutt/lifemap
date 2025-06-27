@@ -12,8 +12,6 @@ LifeMap is a personal memory journal that lets you save and view your life momen
 * 🗑 Delete memories anytime
 * 📦 Built with Next.js App Router, Clerk Auth, MongoDB, and Tailwind
 * 🌐 Responsive UI with light/dark mode
-* 📤 (Optional) Share or download Polaroid images
-
 ---
 
 ## 🧪 Tech Stack
