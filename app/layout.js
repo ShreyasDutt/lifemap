@@ -1,15 +1,14 @@
 import {
   ClerkProvider,
 } from '@clerk/nextjs'
-import { Indie_Flower } from 'next/font/google'
+import { Funnel_Sans } from 'next/font/google'
 import './globals.css'
-import { dark } from '@clerk/themes'
 import Navbar from '@/components/Navbar'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { Toaster } from "@/components/ui/sonner"
 
 
-const caveat = Indie_Flower({
+const caveat = Funnel_Sans({
   subsets: ["latin"],
   weight: "400",
 });

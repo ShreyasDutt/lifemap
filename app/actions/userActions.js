@@ -26,7 +26,7 @@ try {
          createdBy: FoundUser._id,
             photo: image,
             title: title,
-            memoryDate: date,
+            memoryDate: new Date(date),
             imageId:imageId
     })
     FoundUser.memories.push(CreatedMemory._id);
@@ -50,7 +50,7 @@ export const GetAllMemories = async () => {
 
     FoundUser.memories.forEach((memoryDoc) => {
       const memory = memoryDoc.toObject();
-      const date = new Date(memory.memoryDate).toISOString().split("T")[0]; // 'YYYY-MM-DD'
+      const date = new Date(memory.memoryDate).toLocaleDateString("en-CA");
       if (!grouped[date]) {
         grouped[date] = [];
       }
